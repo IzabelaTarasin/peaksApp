@@ -46,7 +46,9 @@ namespace peaksApp
                 .Where(p => p.Season == Season.ZIMA)
                 .Select(p => new PeakDto() {
                     Name = p.Name,
+                    MountainRange = p.MountainRange,
                     Elevation = p.Elevation,
+                    Season = p.Season,
                     CrownOfPolishMountains = p.CrownOfPolishMountains,
                     Country = p.Country,
                     ExpeditionDate = p.ExpeditionDate,

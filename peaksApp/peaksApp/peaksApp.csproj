@@ -63,6 +63,7 @@
     <Compile Include="MountainRange.cs" />
     <Compile Include="Season.cs" />
     <Compile Include="PeakMap.cs" />
+    <Compile Include="PeakDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

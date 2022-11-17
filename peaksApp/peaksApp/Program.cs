@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using CsvHelper;
-using CsvHelper.Configuration;
 
 namespace peaksApp
 {
@@ -17,7 +14,51 @@ namespace peaksApp
             string csvPath = @"../../myPeaks.csv";
             var peaks = LoadPeaksFromCSV(csvPath);
 
-            DisplayPeaks(peaks);
+            //DisplayPeaks(peaks);
+            GetPeaksHigherThen2000AndAreConquered(peaks);
+            GetPeaksHigherThen2000AndIsNotConquered(peaks);
+            GetWinterPeaks(peaks);
+        }
+
+        static void GetPeaksHigherThen2000AndAreConquered(IEnumerable<Peak> peaks)
+        {
+            var highestPeaks = peaks
+                .Where(p => p.Elevation > 2000 && p.isConquered == true)
+                .GroupBy(p => p.Name)
+                .Select(p => p.FirstOrDefault());
+
+            DisplayPeaks(highestPeaks);
+        }
+
+        static void GetPeaksHigherThen2000AndIsNotConquered(IEnumerable<Peak> peaks)
+        {
+            var highestPeaks = peaks
+                .Where(p => p.Elevation > 2000 && p.isConquered == false)
+                .GroupBy(p => p.Name)
+                .Select(p => p.FirstOrDefault());
+
+            DisplayPeaks(highestPeaks);
+        }
+
+        static void GetWinterPeaks(IEnumerable<Peak> peaks)
+        {
+            var winterPeaksDto = peaks
+                .Where(p => p.Season == Season.ZIMA)
+                .Select(p => new PeakDto() {
+                    Name = p.Name,
+                    Elevation = p.Elevation,
+                    CrownOfPolishMountains = p.CrownOfPolishMountains,
+                    Country = p.Country,
+                    ExpeditionDate = p.ExpeditionDate,
+                    isConquered = p.isConquered,
+                    Latitude = p.Latitude,
+                    Longitude = p.Longitude
+                });
+
+            foreach (var winterPeak in winterPeaksDto)
+            {
+                Console.WriteLine($"Zimowe wejście na {winterPeak.Name} {winterPeak.Elevation} m n.p.m. dnia {winterPeak.ExpeditionDate.ToShortDateString()}");
+            }
         }
 
         public static void DisplayPeaks(IEnumerable<Peak> peaks)
@@ -28,14 +69,16 @@ namespace peaksApp
             }
         }
 
+        public static void DisplayPeak(Peak peak)
+        {
+            Console.WriteLine(peak);
+        }
+
         public static List<Peak> LoadPeaksFromCSV(string csvPath)
         {
-            Console.WriteLine("test 0" + csvPath);
             using(var reader = new StreamReader(csvPath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                Console.WriteLine("test" + reader);
-                Console.WriteLine("test2" + csv);
                 csv.Context.RegisterClassMap<PeakMap>();
                 var records = csv.GetRecords<Peak>().ToList();
                 return records;

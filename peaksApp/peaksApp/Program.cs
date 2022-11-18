@@ -17,8 +17,8 @@ namespace peaksApp
             //DisplayPeaks(peaks);
             //GetPeaksHigherThen2000AndAreConquered(peaks);
             //GetPeaksHigherThen2000AndIsNotConquered(peaks);
-            //GetWinterPeaks(peaks);
-            GetMainPointsOfPeaks(peaks);
+            GetWinterPeaks(peaks);
+            //GetMainPointsOfPeaks(peaks);
         }
 
         static void GetPeaksHigherThen2000AndAreConquered(IEnumerable<Peak> peaks)
@@ -43,6 +43,8 @@ namespace peaksApp
 
         static void GetWinterPeaks(IEnumerable<Peak> peaks)
         {
+            //return dto type
+            Console.WriteLine("DTO type: ");
             var winterPeaksDto = peaks
                 .Where(p => p.Season == Season.ZIMA)
                 .Select(p => new PeakDto() {
@@ -62,6 +64,29 @@ namespace peaksApp
             {
                 Console.WriteLine($"Zimowe wejście na {winterPeak.Name} {winterPeak.Elevation} m n.p.m. dnia {winterPeak.ExpeditionDate.ToShortDateString()}");
             }
+
+            // return anonymous type
+            Console.WriteLine("Anonymous type: ");
+            var winterPeaksAnonymousDto = peaks
+                .Where(p => p.Season == Season.ZIMA)
+                .Select(p => new
+                {
+                    Name = p.Name,
+                    MountainRange = p.MountainRange,
+                    Elevation = p.Elevation,
+                    Season = p.Season,
+                    CrownOfPolishMountains = p.CrownOfPolishMountains,
+                    Country = p.Country,
+                    ExpeditionDate = p.ExpeditionDate,
+                    isConquered = p.isConquered,
+                    Latitude = p.Latitude,
+                    Longitude = p.Longitude,
+                });
+
+            foreach (var winterPeak in winterPeaksAnonymousDto)
+            {
+                Console.WriteLine($"Zimowe wejście na {winterPeak.Name} {winterPeak.Elevation} m n.p.m. dnia {winterPeak.ExpeditionDate.ToShortDateString()}");
+            }
         }
 
         static void GetMainPointsOfPeaks(IEnumerable<Peak> peaks)
@@ -70,7 +95,7 @@ namespace peaksApp
             var mainPointsList = peaks.Select(p => p.MainPoints);
             foreach (var mainPointsItem in mainPointsList)
             {
-                Console.WriteLine($"Select: {string.Join(": ", mainPointsItem)}");
+                Console.WriteLine($"Select: {string.Join(", ", mainPointsItem)}");
             }
 
             //IEnumerable<string> :

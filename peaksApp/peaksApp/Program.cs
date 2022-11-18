@@ -21,7 +21,45 @@ namespace peaksApp
             //GetMainPointsOfPeaks(peaks);
             //GetFirstXPeaksInYSeason(peaks, 3, Season.LATO);
             //GetPeakInYSeasonIsNotConquered(peaks, Season.LATO);
-            GetSortedPeaks(peaks);
+            //GetSortedPeaks(peaks);
+            //GetConqueredPeaks(peaks);
+            GetPeaks(peaks);
+        }
+
+        static void GetConqueredPeaks(IEnumerable<Peak> peaks)
+        {
+            //Distinct operuje na 1 zbiorze
+            //zdobyte wierzchołki wyswietlic tylko nazwy
+            //return IEnumerable<string>
+            var conqueredPeaksName = peaks.Where(p => p.isConquered == true).Select(p => p.Name).Distinct();
+            Console.WriteLine($"{string.Join(",\n", conqueredPeaksName)}");
+        }
+
+        static void GetPeaks(IEnumerable<Peak> peaks)
+        {
+            var winterPeaks = peaks.Where(p => p.Season == Season.ZIMA);
+            Console.WriteLine("Winter:");
+            DisplayPeaks(winterPeaks);
+
+            var tatrasPeaks = peaks.Where(p => p.MountainRange == MountainRange.TATRY_WYSOKIE);
+            Console.WriteLine("\nTatry wysokie:");
+            DisplayPeaks(tatrasPeaks);
+
+            //Union - scalenie zbiorów bez duplikowania rekordów, łączenie tylko tych zbiorów ktorych typy się pokrywają
+            var unionPeaks = winterPeaks.Union(tatrasPeaks);
+            Console.WriteLine("\nUnion:");
+            DisplayPeaks(unionPeaks);
+
+            //Intersect - zwraca tylko te wartosci ktore wystepują w obu zbiorach, łączenie tylko tych zbiorów ktorych typy się pokrywają
+            var intersectPeaks = winterPeaks.Intersect(tatrasPeaks);
+            Console.WriteLine("\nIntersect:");
+            DisplayPeaks(intersectPeaks);
+
+            //except, wywolanie metody na zbiorze a, zwroci te rekordy ktore sa w zbiorze a i nie wystepuja w zbiorze b
+            var exceptPeaks = winterPeaks.Except(tatrasPeaks);
+            Console.WriteLine("\nExcept:");
+            DisplayPeaks(exceptPeaks);
+
         }
 
         static void GetPeaksHigherThen2000AndAreConquered(IEnumerable<Peak> peaks)

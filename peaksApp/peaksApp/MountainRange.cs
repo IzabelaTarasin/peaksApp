@@ -7,6 +7,7 @@ namespace peaksApp
         BIESZCZADY_ZACHODNIE,
         POGÓRZE_GUBAŁOWSKIE,
         TATRY_WYSOKIE,
-        BESKID_WYSPOWY
+        BESKID_WYSPOWY,
+        POGÓRZE_WIŚNICKIE
     }
 }

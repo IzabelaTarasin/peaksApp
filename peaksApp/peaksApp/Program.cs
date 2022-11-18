@@ -15,9 +15,10 @@ namespace peaksApp
             var peaks = LoadPeaksFromCSV(csvPath);
 
             //DisplayPeaks(peaks);
-            GetPeaksHigherThen2000AndAreConquered(peaks);
-            GetPeaksHigherThen2000AndIsNotConquered(peaks);
-            GetWinterPeaks(peaks);
+            //GetPeaksHigherThen2000AndAreConquered(peaks);
+            //GetPeaksHigherThen2000AndIsNotConquered(peaks);
+            //GetWinterPeaks(peaks);
+            GetMainPointsOfPeaks(peaks);
         }
 
         static void GetPeaksHigherThen2000AndAreConquered(IEnumerable<Peak> peaks)
@@ -54,13 +55,27 @@ namespace peaksApp
                     ExpeditionDate = p.ExpeditionDate,
                     isConquered = p.isConquered,
                     Latitude = p.Latitude,
-                    Longitude = p.Longitude
+                    Longitude = p.Longitude,
                 });
 
             foreach (var winterPeak in winterPeaksDto)
             {
                 Console.WriteLine($"Zimowe wejście na {winterPeak.Name} {winterPeak.Elevation} m n.p.m. dnia {winterPeak.ExpeditionDate.ToShortDateString()}");
             }
+        }
+
+        static void GetMainPointsOfPeaks(IEnumerable<Peak> peaks)
+        {
+            //IEnumerable<List<string>> :
+            var mainPointsList = peaks.Select(p => p.MainPoints);
+            foreach (var mainPointsItem in mainPointsList)
+            {
+                Console.WriteLine($"Select: {string.Join(": ", mainPointsItem)}");
+            }
+
+            //IEnumerable<string> :
+            var mainPoints = peaks.SelectMany(p => p.MainPoints);
+            Console.WriteLine($"SelectMany: {string.Join(", ", mainPoints)}");
         }
 
         public static void DisplayPeaks(IEnumerable<Peak> peaks)
@@ -86,7 +101,5 @@ namespace peaksApp
                 return records;
             }
         }
-
-        
     }
 }

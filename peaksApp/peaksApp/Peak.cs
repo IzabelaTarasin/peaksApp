@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace peaksApp
 {
     public class Peak
@@ -13,6 +15,7 @@ namespace peaksApp
         public bool isConquered { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        public List<string> MainPoints { get; set; } = new List<string>();
 
         public override string ToString()
         {
@@ -21,11 +24,12 @@ namespace peaksApp
                 $"{Elevation + "m n.p.m.",-15} | " +
                 $"{Season,-10} | " +
                 $"{CrownOfPolishMountains,-10} | " +
-                $"{(Country.Length > 15 ? Country.Substring(0, 15) + "..." : Country), -18} | " +
+                $"{(Country.Length > 15 ? Country.Substring(0, 15) + "..." : Country),-18} | " +
                 $"{ExpeditionDate.ToShortDateString() + " r.",-20} | " +
                 $"{isConquered,-10} | " +
                 $"{Latitude,-20} | " +
-                $"{Longitude,-20} | ";
+                $"{Longitude,-20} | " +
+                $"{String.Join(", ", MainPoints)}";
         }
     }
 }

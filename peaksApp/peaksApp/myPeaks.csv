@@ -1,19 +1,19 @@
-Name,MountainRange,Elevation,Season,CrownOfPolishMountains,Country,ExpeditionDate,isConquered,Latitude,Longitude
-Kasprowy Wierch,TATRY_ZACHODNIE,1987,JESIEŃ,false,Polska,27-Sep-17,true,"49° 13' 33.00"" N","19° 58' 32.99"" E"
-Małołączniak,TATRY_ZACHODNIE,2096,LATO,false,Polska,4-Aug-21,true,49° 14' 9'' N,19° 55' 9'' E
-Tarnica,BIESZCZADY_ZACHODNIE,1346,LATO,true,Polska,29-Aug-18,true,"53° 21' 1.79"" N","15° 54' 2.39"" E"
-Gubałówka,POGÓRZE_GUBAŁOWSKIE,1129,LATO,false,Polska,6-Aug-20,true,"49° 18' 15.00"" N","19° 56' 14.99"" E"
-Morskie Oko,TATRY_WYSOKIE,1395,WIOSNA,false,Polska,3-May-18,true,,
-Morskie Oko,TATRY_WYSOKIE,1395,ZIMA,false,Polska,27-Dec-16,true,,
-Giewont,TATRY_ZACHODNIE,1895,LATO,false,Polska,7-Jul-15,true,"49° 11' 30.00"" N","20° 04' 9.00"" E"
-Kozi Wierch,TATRY_WYSOKIE,2291,LATO,false,Polska,8-Aug-20,false,,
-Swistowa Czuba,TATRY_WYSOKIE,1763,LATO,false,Polska,8-Aug-20,true,,
-Morskie Oko,TATRY_WYSOKIE,1395,LATO,false,Polska,8-Aug-20,true,,
-Giewont,TATRY_ZACHODNIE,1895,LATO,false,Polska,7-Aug-20,true,"49° 11' 30.00"" N","20° 04' 9.00"" E"
-Kopa Kondracka,TATRY_ZACHODNIE,2005,LATO,false,Polska,7-Aug-20,true,,
-Morskie Oko,TATRY_WYSOKIE,1395,ZIMA,false,Polska,20-Dec-21,true,,
-Butorowy Wierch,POGÓRZE_GUBAŁOWSKIE,1158,LATO,false,Polska,6-Aug-20,true,,
-Morskie Oko,TATRY_WYSOKIE,1395,LATO,false,Polska,7-Jul-15,true,"49° 11' 30.00"" N","20° 04' 9.00"" E"
-Szpiglasowy Wierch,TATRY_WYSOKIE,2172,LATO,false,Polska,6-Aug-21,false,,
-Kopa Kondracka,TATRY_ZACHODNIE,2005,LATO,false,Polska,4-Aug-21,true,,
-Mogielica,BESKID_WYSPOWY,1170,LATO,true,Polska,31-Aug-20,true,,
+Name,MountainRange,Elevation,Season,CrownOfPolishMountains,Country,ExpeditionDate,isConquered,Latitude,Longitude,MainPoints
+Kasprowy Wierch,TATRY_ZACHODNIE,1987,JESIEŃ,false,Polska,27-Sep-17,true,"49° 13' 33.00"" N","19° 58' 32.99"" E",Wycieczka rodzinna;Siostra pierwszy raz w górach
+Małołączniak,TATRY_ZACHODNIE,2096,LATO,false,Polska,4-Aug-21,true,49° 14' 9'' N,19° 55' 9'' E,Łańcuchy;Kobylarzowy żleb;Widok na Giewont
+Tarnica,BIESZCZADY_ZACHODNIE,1346,LATO,true,Polska,29-Aug-18,true,"53° 21' 1.79"" N","15° 54' 2.39"" E",ładny widok
+Gubałówka,POGÓRZE_GUBAŁOWSKIE,1129,LATO,false,Polska,6-Aug-20,true,"49° 18' 15.00"" N","19° 56' 14.99"" E",ładny widok
+Morskie Oko,TATRY_WYSOKIE,1395,WIOSNA,false,Polska,3-May-18,true,,,ładny widok
+Morskie Oko,TATRY_WYSOKIE,1395,ZIMA,false,Polska,27-Dec-16,true,,,ładny widok
+Giewont,TATRY_ZACHODNIE,1895,LATO,false,Polska,7-Jul-15,true,"49° 11' 30.00"" N","20° 04' 9.00"" E",ładny widok
+Kozi Wierch,TATRY_WYSOKIE,2291,LATO,false,Polska,8-Aug-20,false,,,Burza;Szarlotka w schronisku 5-ciu stawów PL
+Swistowa Czuba,TATRY_WYSOKIE,1763,LATO,false,Polska,8-Aug-20,true,,,ładny widok
+Morskie Oko,TATRY_WYSOKIE,1395,LATO,false,Polska,8-Aug-20,true,,,ładny widok
+Giewont,TATRY_ZACHODNIE,1895,LATO,false,Polska,7-Aug-20,true,"49° 11' 30.00"" N","20° 04' 9.00"" E",ładny widok
+Kopa Kondracka,TATRY_ZACHODNIE,2005,LATO,false,Polska,7-Aug-20,true,,,ładny widok
+Morskie Oko,TATRY_WYSOKIE,1395,ZIMA,false,Polska,20-Dec-21,true,,,ładny widok
+Butorowy Wierch,POGÓRZE_GUBAŁOWSKIE,1158,LATO,false,Polska,6-Aug-20,true,,,Piękne widoki na Tatry;Zjazd kolejką
+Morskie Oko,TATRY_WYSOKIE,1395,LATO,false,Polska,7-Jul-15,true,"49° 11' 30.00"" N","20° 04' 9.00"" E",Pierwszy wyjazd w Tatry
+Szpiglasowy Wierch,TATRY_WYSOKIE,2172,LATO,false,Polska,6-Aug-21,false,,,ładny widok
+Kopa Kondracka,TATRY_ZACHODNIE,2005,LATO,false,Polska,4-Aug-21,true,,,ładny widok
+Mogielica,BESKID_WYSPOWY,1170,LATO,true,Polska,31-Aug-20,true,,,ładny widok

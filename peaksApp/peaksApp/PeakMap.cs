@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using CsvHelper;
 using CsvHelper.Configuration;
 
 namespace peaksApp
@@ -17,6 +20,13 @@ namespace peaksApp
             Map(m => m.isConquered).Name(nameof(Peak.isConquered));
             Map(m => m.Latitude).Name(nameof(Peak.Latitude));
             Map(m => m.Longitude).Name(nameof(Peak.Longitude));
+            Map(m => m.MainPoints).Convert(ConvertMainPoints);
+        }
+
+        private List<string> ConvertMainPoints(ConvertFromStringArgs args)
+        {
+            var mainPoints = args.Row.GetField("MainPoints");
+            return mainPoints.Split(';').ToList();
         }
     }
 }

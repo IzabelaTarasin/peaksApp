@@ -22,3 +22,4 @@
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.csproj.CopyComplete
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.exe
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.pdb
+/Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.csproj.AssemblyReference.cache

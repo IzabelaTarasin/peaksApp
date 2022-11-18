@@ -24,7 +24,68 @@ namespace peaksApp
             //GetSortedPeaks(peaks);
             //GetConqueredPeaks(peaks);
             //GetPeaksFromDifferentSets(peaks);
-            GetPeaksFromCrownOfPolishMountainsHigherThan1300(peaks);
+            //GetPeaksFromCrownOfPolishMountainsHigherThan1300(peaks);
+            GetPeaksFrom2021(peaks);
+        }
+
+        static void GetPeaksFrom2021(IEnumerable<Peak> peaks)
+        {
+            //where filtrowanie danych na podstawie predykaty
+            var peaks2021 = peaks.Where(p => p.ExpeditionDate >= new DateTime(2021, 01, 01));
+            DisplayPeaks(peaks2021);
+
+            //first - pierwszy element z kolekcji
+            var onePeak2021 = peaks.Where(p => p.ExpeditionDate >= new DateTime(2021, 01, 01)).First();
+            Console.WriteLine("\nFirst peak from 2021 collection");
+            DisplayPeak(onePeak2021);
+
+            //first - pierwszy element z kolekcji spęłniający dodatkowy warunek na podstawie wrowadzonego predykatu
+            //gdy żaden element nie spełni warunku zostanie rzucony wyjątek
+            var oneWinterPeak2021 = peaks.Where(p => p.ExpeditionDate >= new DateTime(2021, 01, 01)).First(p => p.Season == Season.ZIMA);
+            Console.WriteLine("\nFirst peak from winter 2021 collection");
+            DisplayPeak(oneWinterPeak2021);
+
+            //firstOrDefault - zwroci pierwszy element z kolekcji a gdy zaden element nie spelni warunku to nie wyrzuci wyjatku tylko zapisze domyślą wartość dla danego typu
+            var oneWinterPeak2021FD = peaks.Where(p => p.ExpeditionDate >= new DateTime(2021, 01, 01)).FirstOrDefault(p => p.Season == Season.JESIEŃ);
+            Console.WriteLine("\nFirst peak from winter 2021 collection - first or default");
+            DisplayPeak(oneWinterPeak2021FD);
+
+            /*
+            //single - sprawdzi czy w elementach spelniajacych predykate znajduje sie wiecej niz 1 element (wyrzuci blad w trakcie dzialania programu gdy jest wiecej niz 1 element)
+            var oneSummerPeak2021SingleMethod = peaks.Where(p => p.ExpeditionDate >= new DateTime(2021, 01, 01)).Single(p => p.Season == Season.LATO);
+            Console.WriteLine("\nFirst  peak from summer 2021 collection - single");
+            DisplayPeak(oneSummerPeak2021SingleMethod); //throw System.InvalidOperationException: Sequence contains more than one matching element
+            */
+
+            /*
+            var oneSpringPeak2021SingleMethod = peaks.Where(p => p.ExpeditionDate >= new DateTime(2021, 01, 01)).Single(p => p.Season == Season.WIOSNA);
+            Console.WriteLine("\nFirst peak from spring 2021 collection - single");
+            DisplayPeak(oneSpringPeak2021SingleMethod); //throw System.InvalidOperationException: Sequence contains no matching element
+            */
+
+            var onePeak2021SingleMethod = peaks.Where(p => p.ExpeditionDate >= new DateTime(2021, 01, 01)).Single(p => p.MountainRange == MountainRange.POGÓRZE_WIŚNICKIE);
+            Console.WriteLine("\nFirst peak from winter 2021 collection - single");
+            DisplayPeak(onePeak2021SingleMethod); //only one element
+
+            //single or default - gdy nie spelni warunku to przypisze wartosc defaultową dla danego typu, nie wyrzuci wyjatku jak single
+            var oneSpringPeak2021SingleMethod = peaks.Where(p => p.ExpeditionDate >= new DateTime(2021, 01, 01)).SingleOrDefault(p => p.Season == Season.WIOSNA);
+            Console.WriteLine("\nFirst peak from spring 2021 collection - single");
+            DisplayPeak(oneSpringPeak2021SingleMethod);
+
+            //last - wybierze ostatni element z kolekcji
+            var lastPeak2021 = peaks.Where(p => p.ExpeditionDate >= new DateTime(2021, 01, 01)).Last();
+            Console.WriteLine("\nLast peak from 2021 collection");
+            DisplayPeak(lastPeak2021);
+
+            //last - wybierze ostatni elemnt spelniajacy dany predykat, gdy nie zostanie znaleziony to rzuci wyjatkiem
+            var lastSummerPeak2021 = peaks.Where(p => p.ExpeditionDate >= new DateTime(2021, 01, 01)).Last(p => p.Season == Season.LATO);
+            Console.WriteLine("\nLast peak from summer 2021 collection");
+            DisplayPeak(lastSummerPeak2021);
+
+            //last or default - gdy na podstawie predykatu nie znajdzie zadnego elementu to przypisze wartosc domyslną dla danego typu
+            var lastSpringPeak2021 = peaks.Where(p => p.ExpeditionDate >= new DateTime(2021, 01, 01)).LastOrDefault(p => p.Season == Season.WIOSNA);
+            Console.WriteLine("\nLast peak from spring 2021 collection");
+            DisplayPeak(lastSpringPeak2021);
         }
 
         static void GetPeaksFromCrownOfPolishMountainsHigherThan1300(IEnumerable<Peak> peaks)

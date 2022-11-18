@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{4F018ADA-1368-44C2-842C-D4364A511065}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="peaksApp/PeakDto.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="peaksApp/Program.cs">
     <Files>
       <File FileName="peaksApp/Program.cs" Line="41" Column="1" />
       <File FileName="peaksApp/Peak.cs" />
@@ -15,7 +15,7 @@
           <Node name="peaksApp" expanded="True">
             <Node name="peaksApp" expanded="True">
               <Node name="Properties" expanded="True" />
-              <Node name="PeakDto.cs" selected="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>

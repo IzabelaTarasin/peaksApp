@@ -23,7 +23,33 @@ namespace peaksApp
             //GetPeakInYSeasonIsNotConquered(peaks, Season.LATO);
             //GetSortedPeaks(peaks);
             //GetConqueredPeaks(peaks);
-            GetPeaks(peaks);
+            //GetPeaksFromDifferentSets(peaks);
+            GetPeaksFromCrownOfPolishMountainsHigherThan1300(peaks);
+        }
+
+        static void GetPeaksFromCrownOfPolishMountainsHigherThan1300(IEnumerable<Peak> peaks)
+        {
+            Console.WriteLine("crownPeaks:");
+            var crownPeaks = peaks.Where(p => p.CrownOfPolishMountains == true);
+            DisplayPeaks(crownPeaks);
+
+            Console.WriteLine("\ncrownPeaksHigherThan1300:");
+            var crownPeaksHigherThan1300 = peaks.Where(p => p.CrownOfPolishMountains == true && p.Elevation > 1300);
+            DisplayPeaks(crownPeaksHigherThan1300);
+
+            //all - czy elementy spelniaja warunek
+            var allOperatorPeaks = peaks.Where(p => p.CrownOfPolishMountains == true).All(p => p.Elevation >1300);
+            Console.WriteLine(allOperatorPeaks); //false bo przynajmniej jeden peak ma mniej niż 1300 lub = 1300
+
+            var allOperatorPeaksT = peaks.Where(p => p.CrownOfPolishMountains == true).All(p => p.Elevation > 10);
+            Console.WriteLine(allOperatorPeaksT); //true bo wszystkie emeenty spelniaja warunek
+
+            //any - czy jest choc jeden element ktory spelnia warunek
+            var anyOperatorPeaks = peaks.Where(p => p.CrownOfPolishMountains == true).Any(p => p.Elevation > 1300);
+            Console.WriteLine(anyOperatorPeaks); //true bo przynajmniej jeden peak ma więcej niż 1300
+
+            var anyOperatorPeaksN = peaks.Where(p => p.CrownOfPolishMountains == true).Any(p => p.Elevation > 2500);
+            Console.WriteLine(anyOperatorPeaksN); //false bo zaden element nie spelnia warunku
         }
 
         static void GetConqueredPeaks(IEnumerable<Peak> peaks)
@@ -35,7 +61,7 @@ namespace peaksApp
             Console.WriteLine($"{string.Join(",\n", conqueredPeaksName)}");
         }
 
-        static void GetPeaks(IEnumerable<Peak> peaks)
+        static void GetPeaksFromDifferentSets(IEnumerable<Peak> peaks)
         {
             var winterPeaks = peaks.Where(p => p.Season == Season.ZIMA);
             Console.WriteLine("Winter:");

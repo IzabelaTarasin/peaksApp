@@ -17,8 +17,11 @@ namespace peaksApp
             //DisplayPeaks(peaks);
             //GetPeaksHigherThen2000AndAreConquered(peaks);
             //GetPeaksHigherThen2000AndIsNotConquered(peaks);
-            GetWinterPeaks(peaks);
+            //GetWinterPeaks(peaks);
             //GetMainPointsOfPeaks(peaks);
+            //GetFirstXPeaksInYSeason(peaks, 3, Season.LATO);
+            //GetPeakInYSeasonIsNotConquered(peaks, Season.LATO);
+            GetSortedPeaks(peaks);
         }
 
         static void GetPeaksHigherThen2000AndAreConquered(IEnumerable<Peak> peaks)
@@ -101,6 +104,66 @@ namespace peaksApp
             //IEnumerable<string> :
             var mainPoints = peaks.SelectMany(p => p.MainPoints);
             Console.WriteLine($"SelectMany: {string.Join(", ", mainPoints)}");
+        }
+
+        static void GetFirstXPeaksInYSeason(IEnumerable<Peak> peaks, int x, Season y)
+        {
+            var firstXPeaks = peaks
+                .Where(p => p.Season == y)
+                .OrderBy(p => p.ExpeditionDate)
+                .Take(x);
+
+            DisplayPeaks(firstXPeaks);
+        }
+
+        /*
+        static void GetPeakInYSeasonTakeWhileTest(IEnumerable<Peak> peaks, Season y)
+        {
+            var peaksIsNotConquered = peaks
+                .Where(p => p.Season == y);
+            DisplayPeaks(peaksIsNotConquered);
+
+            try
+            {
+                var cos = peaksIsNotConquered
+                    .TakeWhile(p =>
+                    {
+                        Console.WriteLine($"{p.MountainRange} {MountainRange.TATRY_ZACHODNIE}");
+                        return p.MountainRange == MountainRange.TATRY_ZACHODNIE || p.MountainRange == MountainRange.BIESZCZADY_ZACHODNIE;
+                    }).ToList();
+
+                Console.WriteLine("test");
+                DisplayPeaks(cos);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ex: " + ex);
+            }
+
+        }
+        */
+
+        static void GetSortedPeaks(IEnumerable<Peak> peaks)
+        {
+            //sorted by elevation and date
+            //IOrderedEnumerable<Peak>
+            var sortedAscPeaks = peaks.OrderBy(p => p.Elevation).Take(3);
+            Console.WriteLine("\nASC sorted by elevation");
+            DisplayPeaks(sortedAscPeaks);
+
+            var sortedDescPeaks = peaks.OrderByDescending(p => p.Elevation).Take(3);
+            Console.WriteLine("\nDESC sorted by elevation");
+            DisplayPeaks(sortedDescPeaks);
+
+            var sortedPeaks2 = peaks.OrderBy(p => p.Elevation).ThenBy(p => p.ExpeditionDate).Take(3);
+            Console.WriteLine("\nASC sorted by elevation and date");
+            DisplayPeaks(sortedPeaks2);
+
+            var sortedPeaks3 = peaks.OrderByDescending(p => p.Elevation).ThenByDescending(p => p.ExpeditionDate).Take(3);
+            Console.WriteLine("\nDESC sorted by elevation and date");
+            DisplayPeaks(sortedPeaks3);
+
         }
 
         public static void DisplayPeaks(IEnumerable<Peak> peaks)

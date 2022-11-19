@@ -1,3 +1,5 @@
+/Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.exe.config
+/Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.csproj.CoreCompileInputs.cache
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/bin/Debug/peaksApp.exe.config
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/bin/Debug/peaksApp.exe
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/bin/Debug/peaksApp.pdb
@@ -17,9 +19,9 @@
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/bin/Debug/System.Threading.Tasks.Extensions.xml
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/bin/Debug/Microsoft.Bcl.AsyncInterfaces.xml
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/bin/Debug/CsvHelper.xml
-/Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.exe.config
-/Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.csproj.CoreCompileInputs.cache
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.csproj.CopyComplete
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.exe
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.pdb
+/Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/bin/Debug/Newtonsoft.Json.dll
+/Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/bin/Debug/Newtonsoft.Json.xml
 /Users/izabelatarasin/Projects/peaksApp/peaksApp/peaksApp/obj/Debug/peaksApp.csproj.AssemblyReference.cache

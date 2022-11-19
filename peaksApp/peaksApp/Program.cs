@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
+using Newtonsoft.Json;
 
 namespace peaksApp
 {
@@ -13,6 +14,9 @@ namespace peaksApp
         {
             string csvPath = @"../../myPeaks.csv";
             var peaks = LoadPeaksFromCSV(csvPath);
+
+            LoadSuppliers();
+            LoadMountainShelters();
 
             //DisplayPeaks(peaks);
             //GetPeaksHigherThen2000AndAreConquered(peaks);
@@ -36,7 +40,8 @@ namespace peaksApp
             Console.WriteLine("\nGreather Than 1500");
             GetElevationPeaksWhereMinElevationIsGreatherThan1500(peaks);
             */
-            checkIfEveryPeaksInGroupIsConquered(peaks);
+            //checkIfEveryPeaksInGroupIsConquered(peaks);
+
 
         }
 
@@ -48,7 +53,7 @@ namespace peaksApp
             {
                 var allPeakFromGroupIsConquered = group.All(g => g.isConquered == true);
 
-                Console.WriteLine($"All peaks from group {group.Key, -25} are conquered: {allPeakFromGroupIsConquered}");
+                Console.WriteLine($"All peaks from group {group.Key,-25} are conquered: {allPeakFromGroupIsConquered}");
             }
         }
 
@@ -98,8 +103,9 @@ namespace peaksApp
             {
                 Console.WriteLine($"\nGroup: {p.Key}");
 
-                foreach (var pmr in p) {
-                    Console.WriteLine($"Peak: {pmr.Name, -20} date: {pmr.ExpeditionDate.ToShortDateString()}");
+                foreach (var pmr in p)
+                {
+                    Console.WriteLine($"Peak: {pmr.Name,-20} date: {pmr.ExpeditionDate.ToShortDateString()}");
                 }
             }
         }
@@ -107,13 +113,13 @@ namespace peaksApp
         static void GetAllPeaksGroupedByMountainRange2(IEnumerable<Peak> peaks)
         {
             //return List<IGrouping<MountainRange,Peak>>
-            var mountainRangeGroup = peaks.OrderBy(p => p.Season).GroupBy(p => new { p.MountainRange, p.Season});
+            var mountainRangeGroup = peaks.OrderBy(p => p.Season).GroupBy(p => new { p.MountainRange, p.Season });
 
             foreach (var mrg in mountainRangeGroup)
             {
                 //key is new anonymous object with MountainRange and Season properties
                 var key = mrg.Key;
-                
+
                 Console.WriteLine($"Peak: {key.MountainRange,-20} Season: {key.Season}");
             }
         }
@@ -202,7 +208,7 @@ namespace peaksApp
             DisplayPeaks(crownPeaksHigherThan1300);
 
             //all - czy elementy spelniaja warunek
-            var allOperatorPeaks = peaks.Where(p => p.CrownOfPolishMountains == true).All(p => p.Elevation >1300);
+            var allOperatorPeaks = peaks.Where(p => p.CrownOfPolishMountains == true).All(p => p.Elevation > 1300);
             Console.WriteLine(allOperatorPeaks); //false bo przynajmniej jeden peak ma mniej niż 1300 lub = 1300
 
             var allOperatorPeaksT = peaks.Where(p => p.CrownOfPolishMountains == true).All(p => p.Elevation > 10);
@@ -278,7 +284,8 @@ namespace peaksApp
             Console.WriteLine("DTO type: ");
             var winterPeaksDto = peaks
                 .Where(p => p.Season == Season.ZIMA)
-                .Select(p => new PeakDto() {
+                .Select(p => new PeakDto()
+                {
                     Name = p.Name,
                     MountainRange = p.MountainRange,
                     Elevation = p.Elevation,
@@ -409,7 +416,7 @@ namespace peaksApp
 
         public static List<Peak> LoadPeaksFromCSV(string csvPath)
         {
-            using(var reader = new StreamReader(csvPath))
+            using (var reader = new StreamReader(csvPath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 csv.Context.RegisterClassMap<PeakMap>();
@@ -417,5 +424,22 @@ namespace peaksApp
                 return records;
             }
         }
+
+        public static List<Supplier> LoadSuppliers()
+        {
+            string csvPath = @"../../Suppliers.json";
+            var json = File.ReadAllText(csvPath);
+
+            return JsonConvert.DeserializeObject<List<Supplier>>(json);
+        }
+
+        public static List<MountainShelter> LoadMountainShelters()
+        {
+            string csvPath = @"../../MountainShelters.json";
+            var json = File.ReadAllText(csvPath);
+
+            return JsonConvert.DeserializeObject<List<MountainShelter>>(json);
+        }
+
     }
 }

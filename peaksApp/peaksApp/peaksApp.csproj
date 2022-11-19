@@ -55,6 +55,9 @@
     <Reference Include="CsvHelper">
       <HintPath>..\packages\CsvHelper.30.0.1\lib\net47\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -64,12 +67,12 @@
     <Compile Include="Season.cs" />
     <Compile Include="PeakMap.cs" />
     <Compile Include="PeakDto.cs" />
-    <Compile Include="Suppliers.cs" />
     <Compile Include="MountainShelter.cs" />
+    <Compile Include="Supplier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="MountainShelter.json" />
+    <None Include="MountainShelters.json" />
     <None Include="Suppliers.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

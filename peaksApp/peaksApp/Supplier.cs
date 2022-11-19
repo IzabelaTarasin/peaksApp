@@ -1,7 +1,7 @@
 ﻿using System;
 namespace peaksApp
 {
-    public class Suppliers
+    public class Supplier
     {
         public int Id { get; set; }
         public int MountainShelterId { get; set; }

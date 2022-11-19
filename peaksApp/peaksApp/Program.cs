@@ -15,8 +15,10 @@ namespace peaksApp
             string csvPath = @"../../myPeaks.csv";
             var peaks = LoadPeaksFromCSV(csvPath);
 
-            LoadSuppliers();
-            LoadMountainShelters();
+            var suppliers = LoadSuppliers();
+            var mountainShelters = LoadMountainShelters();
+
+            Join(suppliers, mountainShelters);
 
             //DisplayPeaks(peaks);
             //GetPeaksHigherThen2000AndAreConquered(peaks);
@@ -43,6 +45,23 @@ namespace peaksApp
             //checkIfEveryPeaksInGroupIsConquered(peaks);
 
 
+        }
+
+        static void Join(IEnumerable<Supplier> suppliers, IEnumerable<MountainShelter> mountainShelters)
+        {
+            //join - polaczenie zbiorów na podstawie klucza
+            //dla kazdego schroniska znaleziono dostawce, brak dostawcy dla schorniska -> brak dopasowania i brak zwrocenia waartosci
+            //wynikiem kolekcja typu anaonimowego z 3 wartościami
+            var joinedData = mountainShelters
+                .Join(suppliers,
+                m => m.Id,
+                s => s.MountainShelterId,
+                (mountainShelter, supplier) => new { mountainShelter.Name, supplier.CompanyName, supplier.Description});
+
+            foreach (var item in joinedData)
+            {
+                Console.WriteLine($"Shelter: {item.Name, -40} Supplier: {item.CompanyName}, {item.Description}");
+            }
         }
 
         static void checkIfEveryPeaksInGroupIsConquered(IEnumerable<Peak> peaks)
@@ -425,7 +444,7 @@ namespace peaksApp
             }
         }
 
-        public static List<Supplier> LoadSuppliers()
+        public static IEnumerable<Supplier> LoadSuppliers()
         {
             string csvPath = @"../../Suppliers.json";
             var json = File.ReadAllText(csvPath);
@@ -433,7 +452,7 @@ namespace peaksApp
             return JsonConvert.DeserializeObject<List<Supplier>>(json);
         }
 
-        public static List<MountainShelter> LoadMountainShelters()
+        public static IEnumerable<MountainShelter> LoadMountainShelters()
         {
             string csvPath = @"../../MountainShelters.json";
             var json = File.ReadAllText(csvPath);

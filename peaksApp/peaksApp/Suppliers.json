@@ -2,26 +2,26 @@
   {
     "Id": 1,
     "MountainShelterId": 1,
-    "Name": "E-1",
+    "CompanyName": "E-1",
     "Description": "energy"
   },
   {
     "Id": 2,
     "MountainShelterId": 2,
-    "Name": "E-2",
+    "CompanyName": "E-2",
     "Description": "energy"
   },
   {
     "Id": 3,
     "MountainShelterId": 1,
-    "Location": "F",
-    "Country": "food"
+    "CompanyName": "F",
+    "Description": "food"
   },
   {
     "Id": 4,
     "MountainShelterId": 3,
-    "Location": "I",
-    "Country": "internet"
+    "CompanyName": "I",
+    "Description": "internet"
   }
 
 ]

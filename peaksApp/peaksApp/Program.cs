@@ -25,7 +25,58 @@ namespace peaksApp
             //GetConqueredPeaks(peaks);
             //GetPeaksFromDifferentSets(peaks);
             //GetPeaksFromCrownOfPolishMountainsHigherThan1300(peaks);
-            GetPeaksFrom2021(peaks);
+            //GetPeaksFrom2021(peaks);
+            //GetAllPeaksGroupedByMountainRange(peaks);
+            //GetPeaksFromXMountainRange(peaks, MountainRange.TATRY_WYSOKIE);
+            GetAllPeaksGroupedByMountainRange2(peaks);
+
+        }
+
+        static void GetAllPeaksGroupedByMountainRange(IEnumerable<Peak> peaks)
+        {
+            /*
+            //return IEnumerable<IGrouping<Category,Peak>>
+            var mountainRangeGroup = peaks.GroupBy(p => p.MountainRange);
+            */
+
+            //return List<IGrouping<MountainRange,Peak>>
+            var mountainRangeGroup = peaks.GroupBy(p => p.MountainRange).ToList();
+
+            foreach (var p in mountainRangeGroup)
+            {
+                Console.WriteLine($"\nGroup: {p.Key}");
+
+                foreach (var pmr in p) {
+                    Console.WriteLine($"Peak: {pmr.Name, -20} date: {pmr.ExpeditionDate.ToShortDateString()}");
+                }
+            }
+        }
+
+        static void GetAllPeaksGroupedByMountainRange2(IEnumerable<Peak> peaks)
+        {
+            //return List<IGrouping<MountainRange,Peak>>
+            var mountainRangeGroup = peaks.OrderBy(p => p.Season).GroupBy(p => new { p.MountainRange, p.Season });
+
+            foreach (var mrg in mountainRangeGroup)
+            {
+                //key is new anonymous object with MountainRange and Season properties
+                var key = mrg.Key;
+                
+                Console.WriteLine($"Peak: {key.MountainRange,-20} Season: {key.Season}");
+            }
+        }
+
+        static void GetPeaksFromXMountainRange(IEnumerable<Peak> peaks, MountainRange mountainRange)
+        {
+            var peaksGruoup = peaks
+                .GroupBy(p => p.MountainRange)
+                .First(p => p.Key == mountainRange);
+
+            //2 sposoby wyswietlania: (lub od razu w powyzszej metodzie linq)
+            var peaks1 = peaksGruoup.Select(p => p);
+            DisplayPeaks(peaks1);
+            var peaks2 = peaksGruoup.ToList();
+            DisplayPeaks(peaks2);
         }
 
         static void GetPeaksFrom2021(IEnumerable<Peak> peaks)

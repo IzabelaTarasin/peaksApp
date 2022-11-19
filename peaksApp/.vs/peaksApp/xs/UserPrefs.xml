@@ -7,7 +7,7 @@
       <File FileName="peaksApp/Season.cs" />
       <File FileName="peaksApp/PeakMap.cs" />
       <File FileName="peaksApp/packages.config" />
-      <File FileName="peaksApp/PeakDto.cs" Line="1" Column="1" />
+      <File FileName="peaksApp/PeakDto.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

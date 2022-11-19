@@ -64,11 +64,13 @@
     <Compile Include="Season.cs" />
     <Compile Include="PeakMap.cs" />
     <Compile Include="PeakDto.cs" />
+    <Compile Include="Suppliers.cs" />
+    <Compile Include="MountainShelter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="MountainShelter.json" />
-    <None Include="Description.json" />
+    <None Include="Suppliers.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

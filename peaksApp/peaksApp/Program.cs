@@ -28,8 +28,60 @@ namespace peaksApp
             //GetPeaksFrom2021(peaks);
             //GetAllPeaksGroupedByMountainRange(peaks);
             //GetPeaksFromXMountainRange(peaks, MountainRange.TATRY_WYSOKIE);
-            GetAllPeaksGroupedByMountainRange2(peaks);
+            //GetAllPeaksGroupedByMountainRange2(peaks);
+            //GetElevationsInformations(peaks);
 
+            /*
+            GetElevationsInformations(peaks);
+            Console.WriteLine("\nGreather Than 1500");
+            GetElevationPeaksWhereMinElevationIsGreatherThan1500(peaks);
+            */
+            checkIfEveryPeaksInGroupIsConquered(peaks);
+
+        }
+
+        static void checkIfEveryPeaksInGroupIsConquered(IEnumerable<Peak> peaks)
+        {
+            var mountainRangeGroup = peaks.GroupBy(p => p.MountainRange);
+
+            foreach (var group in mountainRangeGroup)
+            {
+                var allPeakFromGroupIsConquered = group.All(g => g.isConquered == true);
+
+                Console.WriteLine($"All peaks from group {group.Key, -25} are conquered: {allPeakFromGroupIsConquered}");
+            }
+        }
+
+        static void GetElevationsInformations(IEnumerable<Peak> peaks)
+        {
+            var mountainRangeGroup = peaks.GroupBy(p => p.MountainRange);
+
+            foreach (var group in mountainRangeGroup)
+            {
+                var agerageEvelation = group.Average(p => p.Elevation);
+                var minElevation = group.Min(p => p.Elevation);
+                var maxElevation = group.Max(p => p.Elevation);
+
+                Console.WriteLine($"\n{group.Key}");
+                Console.WriteLine($"Average: {agerageEvelation} m n.p.m.");
+                Console.WriteLine($"Min: {minElevation} m n.p.m. Max: {maxElevation} m n.p.m.");
+            }
+        }
+
+        static void GetElevationPeaksWhereMinElevationIsGreatherThan1500(IEnumerable<Peak> peaks)
+        {
+            var mountainRangeGroup = peaks.GroupBy(p => p.MountainRange).Where(r => r.Min(p => p.Elevation > 1500));
+
+            foreach (var group in mountainRangeGroup)
+            {
+                var agerageEvelation = group.Average(p => p.Elevation);
+                var minElevation = group.Min(p => p.Elevation);
+                var maxElevation = group.Max(p => p.Elevation);
+
+                Console.WriteLine($"\n{group.Key}");
+                Console.WriteLine($"Average: {agerageEvelation} m n.p.m.");
+                Console.WriteLine($"Min: {minElevation} m n.p.m. Max: {maxElevation} m n.p.m.");
+            }
         }
 
         static void GetAllPeaksGroupedByMountainRange(IEnumerable<Peak> peaks)
@@ -55,7 +107,7 @@ namespace peaksApp
         static void GetAllPeaksGroupedByMountainRange2(IEnumerable<Peak> peaks)
         {
             //return List<IGrouping<MountainRange,Peak>>
-            var mountainRangeGroup = peaks.OrderBy(p => p.Season).GroupBy(p => new { p.MountainRange, p.Season });
+            var mountainRangeGroup = peaks.OrderBy(p => p.Season).GroupBy(p => new { p.MountainRange, p.Season});
 
             foreach (var mrg in mountainRangeGroup)
             {

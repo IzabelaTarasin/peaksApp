@@ -18,7 +18,8 @@ namespace peaksApp
             var suppliers = LoadSuppliers();
             var mountainShelters = LoadMountainShelters();
 
-            Join(suppliers, mountainShelters);
+            //Join(suppliers, mountainShelters);
+            GroupJoin(suppliers, mountainShelters);
 
             //DisplayPeaks(peaks);
             //GetPeaksHigherThen2000AndAreConquered(peaks);
@@ -45,6 +46,26 @@ namespace peaksApp
             //checkIfEveryPeaksInGroupIsConquered(peaks);
 
 
+        }
+
+        static void GroupJoin(IEnumerable<Supplier> suppliers, IEnumerable<MountainShelter> mountainShelters)
+        {
+            //wynikiem połączenie schronisk z kolekcją dostawców
+            var joinedData = mountainShelters
+                .GroupJoin(suppliers,
+                m => m.Id,
+                s => s.MountainShelterId,
+                (mountainShelter, suppliers_) => new { mountainShelter.Name, Suppliers = suppliers_ });
+
+            foreach (var items in joinedData)
+            {
+                Console.WriteLine($"Shelter: {items.Name,-40} ");
+
+                foreach (var item in items.Suppliers)
+                {
+                    Console.WriteLine($"Supplier: {item.CompanyName}, {item.Description}");
+                }
+}
         }
 
         static void Join(IEnumerable<Supplier> suppliers, IEnumerable<MountainShelter> mountainShelters)
